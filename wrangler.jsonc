@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "system-intelligence-web",
+	"name": "template-app",
   "compatibility_flags": [
     "nodejs_compat",
   ],

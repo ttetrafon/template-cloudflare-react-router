@@ -10,7 +10,7 @@
 		"deploy:production": "pnpm run build:production && wrangler deploy",
 		"dev": "react-router dev --host",
 		"postinstall": "npm run cf-typegen",
-		"preview": "pnpm run build && vite preview",
+		"preview": "pnpm run build:staging && vite preview",
 		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
 	},
 	"packageManager": "pnpm@10.16.1",
