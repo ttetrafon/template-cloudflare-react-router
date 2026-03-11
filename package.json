@@ -1,31 +1,31 @@
 {
-	"name": "system-intelligence-web",
+	"name": "template-cloudflare-router",
 	"version": "0.0.1",
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build:staging": "react-router build --mode staging",
-		"build:production": "react-router build --mode production",
+		"dev": "react-router dev --host",
 		"cf-typegen": "wrangler types",
+		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
+		"build:staging": "pnpm run typecheck && react-router build --mode staging",
+		"build:production": "pnpm run typecheck && react-router build --mode production",
+		"preview": "pnpm run build:staging && vite preview",
 		"deploy:staging": "pnpm run build:staging && wrangler deploy",
 		"deploy:production": "pnpm run build:production && wrangler deploy",
-		"dev": "react-router dev --host",
-		"postinstall": "npm run cf-typegen",
-		"preview": "pnpm run build:staging && vite preview",
-		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+		"postinstall": "npm run cf-typegen"
 	},
 	"packageManager": "pnpm@10.16.1",
 	"dependencies": {
-		"isbot": "^5.1.35",
+		"isbot": "^5.1.36",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"react-router": "^7.13.1"
 	},
 	"devDependencies": {
-		"@cloudflare/vite-plugin": "^1.25.6",
+		"@cloudflare/vite-plugin": "^1.27.0",
 		"@react-router/dev": "^7.13.1",
 		"@tailwindcss/vite": "^4.2.1",
-		"@types/node": "^25.3.3",
+		"@types/node": "^25.4.0",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"tailwindcss": "^4.2.1",
@@ -33,7 +33,7 @@
 		"vite": "^7.3.1",
 		"vite-plugin-icons-spritesheet": "^3.0.1",
 		"vite-tsconfig-paths": "^6.1.1",
-		"wrangler": "^4.69.0"
+		"wrangler": "^4.72.0"
 	},
 	"engines": {
 		"node": ">=22",
