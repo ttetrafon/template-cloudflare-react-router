@@ -1,0 +1,54 @@
+{
+	"name": "react-router-starter-template",
+	"description": "Cloudflare-react-router-template",
+	"cloudflare": {
+		"label": "React Router Framework Starter",
+		"products": [
+			"Workers"
+		],
+		"categories": [
+			"storage"
+		],
+		"preview_icon_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/36a99c4a-8919-4e6e-ac9e-e55974407200/public",
+		"preview_image_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/65455e96-7992-425f-44e4-30f3e7d7f900/preview",
+		"publish": true
+	},
+	"dependencies": {
+		"isbot": "5.1.40",
+		"react": "19.2.6",
+		"react-dom": "19.2.6",
+		"react-router": "7.15.1",
+		"react-router-dom": "^7.15.1"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "1.38.0",
+		"@react-router/dev": "7.15.1",
+		"@tailwindcss/vite": "4.3.0",
+		"@types/node": "25.9.1",
+		"@types/react": "19.2.15",
+		"@types/react-dom": "19.2.3",
+		"tailwindcss": "4.3.0",
+		"typescript": "6.0.3",
+		"vite": "8.0.14",
+		"wrangler": "4.94.0"
+	},
+	"engines": {
+		"node": ">=22",
+		"pnpm": ">=10"
+	},
+	"private": true,
+	"scripts": {
+		"dev": "react-router dev --host",
+		"preview": "pnpm run build && vite preview",
+		"postinstall": "npm run typecheck",
+		"build:staging": "react-router build --mode staging",
+		"build:production": "react-router build --mode production",
+		"cf-typegen": "wrangler types",
+		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
+		"db:migrate:staging": "wrangler d1 migrations/staging apply system-intelligence-db-staging --remote",
+		"db:migrate:production": "wrangler d1 migrations/production apply system-intelligence-db-production --remote",
+		"deploy:staging": "pnpm run build:staging && wrangler deploy",
+		"deploy:production": "pnpm run build:production && wrangler deploy"
+	},
+	"type": "module"
+}
