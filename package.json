@@ -1,6 +1,8 @@
 {
 	"name": "react-router-starter-template",
+	"version": "0.0.0",
 	"description": "Cloudflare-react-router-template",
+	"type": "module",
 	"cloudflare": {
 		"label": "React Router Framework Starter",
 		"products": [
@@ -14,6 +16,7 @@
 		"publish": true
 	},
 	"dependencies": {
+		"argon2": "^0.44.0",
 		"isbot": "5.1.40",
 		"react": "19.2.6",
 		"react-dom": "19.2.6",
@@ -49,6 +52,5 @@
 		"db:migrate:production": "wrangler d1 migrations/production apply system-intelligence-db-production --remote",
 		"deploy:staging": "pnpm run build:staging && wrangler deploy",
 		"deploy:production": "pnpm run build:production && wrangler deploy"
-	},
-	"type": "module"
+	}
 }
