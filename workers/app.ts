@@ -1,13 +1,5 @@
+import type { Context } from 'react';
 import { createRequestHandler, type ServerBuild } from 'react-router';
-
-declare module "react-router" {
-	export interface AppLoadContext {
-		cloudflare: {
-			env: Env;
-			ctx: ExecutionContext;
-		};
-	}
-}
 
 const requestHandler = createRequestHandler(
 	() => import('virtual:react-router/server-build') as Promise<ServerBuild>,
@@ -36,8 +28,6 @@ export default {
 			return handleApiRequest(url, request, env);
 		}
 
-		return requestHandler(request, {
-			cloudflare: { env, ctx },
-		});
+		return requestHandler(request);
 	},
 } satisfies ExportedHandler<Env>;
