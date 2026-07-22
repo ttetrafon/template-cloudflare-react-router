@@ -9,11 +9,14 @@ importers:
   .:
     dependencies:
       argon2:
-        specifier: ^0.44.0
+        specifier: 0.44.0
         version: 0.44.0
       isbot:
         specifier: 5.2.0
         version: 5.2.0
+      lodash:
+        specifier: 4.18.1
+        version: 4.18.1
       react:
         specifier: 19.2.7
         version: 19.2.7
@@ -36,6 +39,9 @@ importers:
       '@tailwindcss/vite':
         specifier: 4.3.2
         version: 4.3.2(vite@8.1.4(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0))
+      '@types/lodash':
+        specifier: ^4.17.24
+        version: 4.17.24
       '@types/node':
         specifier: 26.1.1
         version: 26.1.1
@@ -846,6 +852,9 @@ packages:
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
+
+  '@types/lodash@4.17.24':
+    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
 
   '@types/node@26.1.1':
     resolution: {integrity: sha512-nxAkRSVkN1Y0JC1W8ky/fTfkGsMmcrRsbx+3XoZE+rMOX71kLYTV7fLXpqud1GpbpP5TuffXFqfX7fH2GgZREw==}
@@ -2126,6 +2135,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@types/lodash@4.17.24': {}
 
   '@types/node@26.1.1':
     dependencies:
