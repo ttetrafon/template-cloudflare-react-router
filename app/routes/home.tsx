@@ -10,7 +10,7 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export function loader({ context }: Route.LoaderArgs) {
-	return { message: env.VALUE_FROM_CLOUDFLARE };
+	return { message: env.PUBLIC_ENVIRONMENT };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

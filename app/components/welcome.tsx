@@ -39,7 +39,7 @@ export function Welcome({ message }: { message: string }) {
 									</a>
 								</li>
 							))}
-							<li className="self-stretch p-3 leading-normal">{message}</li>
+							<li className="self-stretch p-3 leading-normal whitespace-nowrap">Running environment: <b>{message}</b></li>
 						</ul>
 					</nav>
 				</div>
