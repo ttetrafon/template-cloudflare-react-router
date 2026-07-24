@@ -1,7 +1,16 @@
+import useMediaQuery from "util/lib-react/hooks/useMediaQuery";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
+import useGeolocation from "util/lib-react/hooks/useGeolocation";
+import type { ElementSize } from "util/lib-react/hooks/useSize";
+import useSize from "util/lib-react/hooks/useSize";
+import { useRef } from "react";
 
 export function Welcome({ message }: { message: string }) {
+	const taRef = useRef<HTMLTextAreaElement>(null);
+	const isNarrow = useMediaQuery("(max-width: 1024px)");
+	const [isGeolocationLoading, geolocationData, geolocationError] = useGeolocation();
+	const elementSize: ElementSize = useSize(taRef);
 
 	return (
 		<main className="flex items-center justify-center pt-16 pb-4">
@@ -39,7 +48,13 @@ export function Welcome({ message }: { message: string }) {
 									</a>
 								</li>
 							))}
-							<li className="self-stretch p-3 leading-normal whitespace-nowrap">Running environment: <b>{message}</b></li>
+							<li className="self-stretch p-3 leading-normal text-center">Running environment: <b>{message}</b></li>
+							<li className="self-stretch p-3 leading-normal text-center">[useMediaQuery] isNarrow: {String(isNarrow)}</li>
+							<li className="self-stretch p-3 leading-normal text-center">[useGeolocation] lat={geolocationData.latitude}, lon={geolocationData.longitude}</li>
+							<li>
+								<textarea ref={taRef} className="w-full" rows={5} />
+							</li>
+							<li className="self-stretch p-3 leading-normal text-center">[useSize] {JSON.stringify(elementSize)}</li>
 						</ul>
 					</nav>
 				</div>
