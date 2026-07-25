@@ -9,7 +9,7 @@ import { useRef } from "react";
 export function Welcome({ message }: { message: string }) {
 	const taRef = useRef<HTMLTextAreaElement>(null);
 	const isNarrow = useMediaQuery("(max-width: 1024px)");
-	const [isGeolocationLoading, geolocationData, geolocationError] = useGeolocation();
+	const [_, geolocationData, __] = useGeolocation();
 	const elementSize: ElementSize = useSize(taRef);
 
 	return (
@@ -51,10 +51,9 @@ export function Welcome({ message }: { message: string }) {
 							<li className="self-stretch p-3 leading-normal text-center">Running environment: <b>{message}</b></li>
 							<li className="self-stretch p-3 leading-normal text-center">[useMediaQuery] isNarrow: {String(isNarrow)}</li>
 							<li className="self-stretch p-3 leading-normal text-center">[useGeolocation] lat={geolocationData.latitude}, lon={geolocationData.longitude}</li>
-							<li>
-								<textarea ref={taRef} className="w-full" rows={5} />
-							</li>
+							<li><textarea ref={taRef} className="max-w-full min-w-1/3 resize border border-action" rows={5} placeholder="Resize me!!!" /></li>
 							<li className="self-stretch p-3 leading-normal text-center">[useSize] {JSON.stringify(elementSize)}</li>
+							<li className="self-stretch p-3 leading-normal text-center">[]</li>
 						</ul>
 					</nav>
 				</div>
