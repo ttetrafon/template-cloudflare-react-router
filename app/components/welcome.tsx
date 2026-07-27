@@ -1,16 +1,20 @@
-import useMediaQuery from "util/lib-react/hooks/useMediaQuery";
+import { useRef } from "react";
+import { useSize, type ElementSize } from "util/lib-react/hooks/useSize";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
+import useMediaQuery from "util/lib-react/hooks/useMediaQuery";
 import useGeolocation from "util/lib-react/hooks/useGeolocation";
-import type { ElementSize } from "util/lib-react/hooks/useSize";
-import useSize from "util/lib-react/hooks/useSize";
-import { useRef } from "react";
+import useOnlineStatus from "util/lib-react/hooks/useOnlineStatus";
+import { useHovered } from "util/lib-react/hooks/useHovered";
 
 export function Welcome({ message }: { message: string }) {
 	const taRef = useRef<HTMLTextAreaElement>(null);
+	const sqRef = useRef<HTMLDivElement>(null);
 	const isNarrow = useMediaQuery("(max-width: 1024px)");
 	const [_, geolocationData, __] = useGeolocation();
 	const elementSize: ElementSize = useSize(taRef);
+	const isOnline: boolean = useOnlineStatus();
+	const hovered: boolean = useHovered(sqRef);
 
 	return (
 		<main className="flex items-center justify-center pt-16 pb-4">
@@ -53,7 +57,10 @@ export function Welcome({ message }: { message: string }) {
 							<li className="self-stretch p-3 leading-normal text-center">[useGeolocation] lat={geolocationData.latitude}, lon={geolocationData.longitude}</li>
 							<li><textarea ref={taRef} className="max-w-full min-w-1/3 resize border border-action" rows={5} placeholder="Resize me!!!" /></li>
 							<li className="self-stretch p-3 leading-normal text-center">[useSize] {JSON.stringify(elementSize)}</li>
-							<li className="self-stretch p-3 leading-normal text-center">[]</li>
+							<li className="self-stretch p-3 leading-normal text-center">[useOnlineStatus] status={isOnline ? 'online' : 'offline'}</li>
+							<li className="self-stretch p-3 leading-normal text-center">
+								<div ref={sqRef} className={`w-full aspect-square ${hovered ? "bg-orange-400" : "bg-red-400"}`}></div>
+							</li>
 						</ul>
 					</nav>
 				</div>
