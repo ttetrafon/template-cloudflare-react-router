@@ -1,9 +1,9 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../components/welcome";
 import { env } from 'cloudflare:workers';
 import { useLoaderData } from "react-router";
+import { Welcome } from "../components/welcome";
 
-const rootMiddleware = async ({ request, url, params, pattern, context }: Route.LoaderArgs, next: Function) => {
+export const rootMiddleware = async ({ request, url, params, pattern, context }: Route.LoaderArgs, next: Function) => {
 	console.log(`>>> '${pattern}' middleware running!`);
 
 	const response = await next();
@@ -32,7 +32,9 @@ export function meta({ }: Route.MetaArgs) {
 	];
 }
 
-export function loader({ }: Route.LoaderArgs) {
+export function loader({ request, url, params, pattern, context }: Route.LoaderArgs) {
+	console.log(`>>> '${pattern}' loader running!`);
+
 	return { message: env.PUBLIC_ENVIRONMENT };
 }
 
