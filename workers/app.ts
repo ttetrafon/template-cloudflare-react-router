@@ -1,4 +1,3 @@
-import type { Context } from 'react';
 import { createRequestHandler, type ServerBuild } from 'react-router';
 
 const requestHandler = createRequestHandler(
